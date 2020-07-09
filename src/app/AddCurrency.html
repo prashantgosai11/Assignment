@@ -1,0 +1,155 @@
+<div class="dialog-content-wrapper" style="width:350pz;">
+  <mat-toolbar matDialogTitle class="mat-accent m-0">
+      <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+          <span class="title dialog-title">{{action}} Currency</span>
+          <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+              <mat-icon>close</mat-icon>
+          </button>
+      </mat-toolbar-row>
+
+      <mat-toolbar-row class="toolbar-bottom py-16" fxLayout="column" fxLayoutAlign="center center">
+
+          <div class="contact-name mt-8"> </div>
+      </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div mat-dialog-content class="p-24 pb-0 m-0" fusePerfectScrollbar>
+
+      <form  [formGroup]="CurrencyForm" (ngSubmit)="onSubmit()">
+
+        <div fxLayout="row" fxLayoutAlign="start start" style="display:none;">
+          <mat-form-field appearance="outline" fxFlex  *ngIf="action=== '' || action==='Delete'">
+              <mat-label>Id</mat-label>
+              <mat-icon matSuffix class="secondary-text">format_list_numbered</mat-icon>
+              <input type="text" name="id"   [formControl]="id" [(ngModel)]="local_data.id" matInput required>
+          </mat-form-field>
+          <div [hidden]="id.valid || currency.untouched">
+
+
+            <div [hidden]="!id.hasError('required')" style="color:red;">Id is required.
+
+            </div>
+           </div>
+      </div>
+
+
+        <div fxLayout="row" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline" fxFlex>
+          <mat-label>Country Name</mat-label>
+          <mat-icon matSuffix class="secondary-text">language</mat-icon>
+          <input type="text"
+
+                 aria-label="Number"
+
+                 matInput
+                 [formControl]="countryname"  [(ngModel)]="local_data.CountryName"
+                 [matAutocomplete]="auto" >
+          <mat-autocomplete #auto="matAutocomplete" >
+            <mat-option *ngFor="let country of filteredOptions | async" [value]="country" >
+              {{country}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        </div>
+          <div fxLayout="row" fxLayoutAlign="start start">
+              <mat-form-field appearance="outline" fxFlex>
+                  <mat-label>Courency</mat-label>
+                  <mat-icon matSuffix class="secondary-text">euro_symbol</mat-icon>
+                  <input type="text" name="currency" [formControl]="currency" [(ngModel)]="local_data.CurrencyName" matInput required>
+              </mat-form-field>
+              <div [hidden]="currency.valid || currency.untouched">
+
+
+                <div [hidden]="!currency.hasError('required')" style="color:red;">Currency is required.
+
+                </div>
+               </div>
+          </div>
+
+
+
+
+
+
+          <div fxLayout="row" fxLayoutAlign="start start">
+              <mat-form-field appearance="outline" fxFlex>
+                  <mat-label>Alphabetic Code</mat-label>
+                  <mat-icon matSuffix class="secondary-text">sort_by_alpha</mat-icon>
+                  <input type="text" [formControl]="alphabaticcode" [(ngModel)]="local_data.AlphabeticCode" matInput id="alphabaticcode">
+              </mat-form-field>
+              <div [hidden]="alphabaticcode.valid || alphabaticcode.untouched">
+
+                <div [hidden]="!alphabaticcode.hasError('minlength')" style="color:red;">Alphabetic Code minimum 3 characters.
+
+                </div>
+                <div [hidden]="!alphabaticcode.hasError('maxlength')" style="color:red;">Alphabetic maximum 3 characters.
+
+                </div>
+                <div [hidden]="!alphabaticcode.hasError('required')" style="color:red;">Alphabetic Code is required.
+
+                </div>
+                <div [hidden]="!alphabaticcode.hasError('pattern')" style="color:red;"> Code must be Alphabetic.
+
+                </div>
+               </div>
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="start start">
+              <mat-form-field appearance="outline" fxFlex>
+                  <mat-label>Numric Code</mat-label>
+                  <mat-icon matSuffix class="secondary-text">filter_1</mat-icon>
+                  <input type="text"  [formControl]="numriccode" [(ngModel)]="local_data.NumricCode" matInput >
+              </mat-form-field>
+              <div [hidden]="numriccode.valid || numriccode.untouched">
+
+                <div [hidden]="!numriccode.hasError('minlength')" style="color:red;">Code minimum 2 characters.
+
+                </div>
+                <div [hidden]="!numriccode.hasError('maxlength')" style="color:red;">Code miximum 4 characters.
+
+                </div>
+                <div [hidden]="!numriccode.hasError('required')" style="color:red;">Code is required.
+
+                </div>
+                <div [hidden]="!numriccode.hasError('pattern')" style="color:red;"> Code must be Number.
+
+                </div>
+               </div>
+          </div>
+
+
+
+
+          <div fxLayout="row" fxLayoutAlign="start start">
+
+
+          <mat-radio-group [formControl]="status" [(ngModel)]="local_data.Status">
+
+            <mat-label>Status</mat-label>
+            <mat-radio-button value="Active">Active</mat-radio-button>
+            <mat-radio-button value="InActive">InActive</mat-radio-button>
+          </mat-radio-group>
+
+
+        </div>
+
+
+
+        <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
+
+
+
+          <button mat-button  type="submit" mat-flat-button color="primary"  [disabled]="!CurrencyForm.valid">{{action}}</button>
+          <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+
+
+      </div>
+
+
+
+      </form>
+
+  </div>
+
+
+</div>

@@ -3,16 +3,33 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CustomMaterialModule } from './_shared/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddCurrencyComponent } from './Addcurrency.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AddCurrencyComponent
+
   ],
   imports: [
+    CustomMaterialModule,
+    BrowserAnimationsModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  entryComponents: [
+    AddCurrencyComponent
+],
+  providers: [HttpClientModule],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }
