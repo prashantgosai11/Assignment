@@ -98,7 +98,7 @@
               <mat-form-field appearance="outline" fxFlex>
                   <mat-label>Numric Code</mat-label>
                   <mat-icon matSuffix class="secondary-text">filter_1</mat-icon>
-                  <input type="text"  [formControl]="numriccode" [(ngModel)]="local_data.NumricCode" matInput >
+                  <input type="text"  [formControl]="numriccode" numbersOnly [(ngModel)]="local_data.NumricCode" matInput >
               </mat-form-field>
               <div [hidden]="numriccode.valid || numriccode.untouched">
 
